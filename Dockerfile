@@ -10,7 +10,7 @@ COPY package-lock.json ./
 COPY nginx.conf ./
 RUN ls
 RUN pwd
-RUN cmd nginx.conf
+RUN cat nginx.conf
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
