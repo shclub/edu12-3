@@ -7,9 +7,10 @@ ENV PATH /app/node_modules/.bin:$PATH
 ENV REACT_APP_API_URL localhost:8080 
 COPY package.json ./
 COPY package-lock.json ./
-COPY nginx.conf /app
+COPY nginx.conf ./
 RUN ls
 RUN pwd
+RUN cmd nginx.conf
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
@@ -29,7 +30,7 @@ RUN pwd
 RUN ls
 RUN ls /etc/nginx/conf.d
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
-COPY /app/nginx.conf /etc/nginx/conf.d/default2.conf
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default2.conf
 
 EXPOSE 80
 
