@@ -7,6 +7,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 ENV REACT_APP_API_URL localhost:8080 
 COPY package.json ./
 COPY package-lock.json ./
+COPY nginx.conf ./
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
@@ -22,8 +23,8 @@ ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY --from=build /app/build /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx.conf /etc/nginx/conf.d/default2.conf
+COPY /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY /app/nginx.conf /etc/nginx/conf.d/default2.conf
 
 EXPOSE 80
 
