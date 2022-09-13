@@ -7,7 +7,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 ENV REACT_APP_API_URL localhost:8080 
 COPY package.json ./
 COPY package-lock.json ./
-COPY nginx.conf ./
+COPY nginx.conf /app
 RUN ls
 RUN pwd
 RUN npm ci --silent
@@ -29,7 +29,7 @@ RUN pwd
 RUN ls
 RUN ls /etc/nginx/conf.d
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
-COPY /nginx.conf /etc/nginx/conf.d/default2.conf
+COPY /app/nginx.conf /etc/nginx/conf.d/default2.conf
 
 EXPOSE 80
 
