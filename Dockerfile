@@ -12,6 +12,7 @@ RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
 RUN npm install http-proxy-middleware
+RUN npm install cors
 
 COPY . ./
 RUN npm run build
