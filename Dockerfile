@@ -4,7 +4,7 @@
 FROM node:14.19.3-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-ENV REACT_APP_API_URL http://localhost:8080 
+ENV REACT_APP_API_URL http://backend:8080 
 COPY package.json ./
 COPY package-lock.json ./
 COPY nginx.conf ./
