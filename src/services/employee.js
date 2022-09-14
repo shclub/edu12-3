@@ -12,7 +12,8 @@ class EmployeeService {
     executeEmployeesService() {
         console.log("===executeEmployeesService===")
 
-        return axios.get(process.env.REACT_APP_API_URL +'/api/v1/employees');        
+        //return axios.get(process.env.REACT_APP_API_URL +'/api/v1/employees'); 
+        return axios.get('/api/v1/employees'); 
     }
 
     getEmployees(){
