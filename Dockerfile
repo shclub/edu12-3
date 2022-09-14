@@ -11,7 +11,7 @@ COPY nginx.conf ./
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
-RUN npm install http-proxy-middleware --save
+RUN npm install http-proxy-middleware
 
 COPY . ./
 RUN npm run build
