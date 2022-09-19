@@ -8,12 +8,6 @@ ENV REACT_APP_API_URL http://localhost:8080
 COPY package.json ./
 COPY package-lock.json ./
 COPY nginx.conf ./
-RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
-#echo $STR | sed -e "s/CWD/$ESCAPED_REPLACE/g"
-RUN echo "REACT API"
-RUN echo $REACT_APP_API_URL
-RUN echo "nginx.conf"
-RUN cat ./nginx.conf
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
@@ -21,6 +15,8 @@ RUN npm install http-proxy-middleware
 RUN npm install cors
 
 COPY . ./
+RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
+
 RUN npm run build
 
 #
@@ -33,6 +29,8 @@ ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY --from=build /app/build /usr/share/nginx/html
+RUN echo "nginx"
+RUN cat /nginx.conf
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
