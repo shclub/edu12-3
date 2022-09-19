@@ -16,7 +16,8 @@ RUN npm install http-proxy-middleware
 RUN npm install cors
 COPY . ./
 RUN npm run build
-
+RUN pwd
+RUN ls
 #
 # Package stage
 #
