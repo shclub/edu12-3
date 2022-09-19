@@ -1,7 +1,7 @@
 #
 # Build stage
 #
-FROM node:14.19.3-alpine as build
+FROM ghcr.io/shclub/node:14.19.3-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV REACT_APP_API_URL http://backend:8080 
@@ -22,7 +22,7 @@ RUN npm run build
 # Package stage
 #
 # production environment
-FROM nginx:stable-alpine
+FROM ghcr.io/shclub/nginx:stable-alpine
 
 ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
