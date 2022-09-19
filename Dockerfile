@@ -28,10 +28,10 @@ ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+
 RUN echo "nginx"
-RUN ls -al /
-RUN cat /nginx.conf
-COPY /nginx.conf /etc/nginx/conf.d/default.conf
+RUN cat /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
