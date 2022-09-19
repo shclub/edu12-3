@@ -7,12 +7,13 @@ ENV PATH /app/node_modules/.bin:$PATH
 ENV REACT_APP_API_URL http://localhost:8080 
 COPY package.json ./
 COPY package-lock.json ./
-RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i nginx.conf
 COPY nginx.conf ./
+RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
+#echo $STR | sed -e "s/CWD/$ESCAPED_REPLACE/g"
 RUN echo "REACT API"
 RUN echo $REACT_APP_API_URL
 RUN echo "nginx.conf"
-RUN echo ./nginx.conf
+RUN cat ./nginx.conf
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
