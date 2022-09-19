@@ -14,7 +14,7 @@ RUN npm install react-scripts@3.4.1 -g --silent
 RUN npm install http-proxy-middleware
 RUN npm install cors
 
-COPY . ./
+#COPY . ./
 RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
 
 RUN npm run build
@@ -30,6 +30,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY --from=build /app/build /usr/share/nginx/html
 RUN echo "nginx"
+RUN ls -al /
 RUN cat /nginx.conf
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
 
