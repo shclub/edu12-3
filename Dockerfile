@@ -9,6 +9,10 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY nginx.conf ./
 RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
+RUN echo "REACT API"
+RUN echo $REACT_APP_API_URL
+RUN echo "nginx.conf"
+RUN echo ./nginx.conf
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
