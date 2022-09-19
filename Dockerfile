@@ -5,9 +5,9 @@ FROM ghcr.io/shclub/node:14.19.3-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV REACT_APP_API_URL http://localhost:8080 
-#COPY package.json ./
-#COPY package-lock.json ./
-#COPY nginx.conf ./
+COPY package.json ./
+COPY package-lock.json ./
+COPY nginx.conf ./
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
