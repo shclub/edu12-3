@@ -10,7 +10,7 @@ COPY nginx.conf ./
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
-#RUN npm install http-proxy-middleware
+RUN npm install http-proxy-middleware
 COPY . ./
 #RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
 RUN npm run build
