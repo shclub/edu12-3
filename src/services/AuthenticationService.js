@@ -13,7 +13,7 @@ class AuthenticationService {
 
     executeHelloService() {
         console.log("===executeHelloService===")
-        return axios.get(process.env.REACT_APP_API_URL +"/hello");        
+        return axios.get("/hello");        
     }
 
     registerSuccessfulLoginForJwt(username, token) {
