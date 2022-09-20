@@ -4,7 +4,6 @@
 FROM ghcr.io/shclub/node:14.19.3-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-#ENV REACT_APP_API_URL http://localhost:8080 
 COPY package.json ./
 COPY package-lock.json ./
 COPY nginx.conf ./
@@ -12,7 +11,6 @@ RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 # CORS
 RUN npm install http-proxy-middleware
-#RUN npm install cors
 COPY . ./
 #RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i ./nginx.conf
 RUN npm run build
@@ -30,7 +28,7 @@ COPY --from=build /app/build /usr/share/nginx/html
 COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
 
 ENV REACT_APP_API_URL http://backend 
-RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i /etc/nginx/conf.d/default.conf
+RUN sed -i "s/backend_host/$REACT_APP_API_URL/g" -i /etc/nginx/conf.d/default.conf
 RUN cat /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
