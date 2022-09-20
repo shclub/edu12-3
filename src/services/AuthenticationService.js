@@ -4,7 +4,7 @@ class AuthenticationService {
 
     executeJwtAuthenticationService(username, password) {
         //return axios.post(process.env.REACT_APP_API_URL + "/api/login", {
-        return axios.post("api/login", {
+        return axios.post("/api/login", {
             username,
             password
         })
