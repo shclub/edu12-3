@@ -28,7 +28,7 @@ COPY --from=build /app/build /usr/share/nginx/html
 COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
 
 ENV REACT_APP_API_URL http://backend 
-RUN sed -i "s/backend_host/$REACT_APP_API_URL/g" -i /etc/nginx/conf.d/default.conf
+RUN sed -i "s|backend_host|$REACT_APP_API_URL|g" -i /etc/nginx/conf.d/default.conf
 RUN cat /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
