@@ -13,12 +13,12 @@ class EmployeeService {
         console.log("===executeEmployeesService===")
 
         //return axios.get(process.env.REACT_APP_API_URL +'/api/v1/employees'); 
-        return axios.get(process.env.REACT_APP_API_URL + '/api/v1/employees'); 
+        return axios.get("/api/v1/employees"); 
     }
 
     getEmployees(){
         console.log("===execute getEmployees Service===")
-        return axios.get(process.env.REACT_APP_API_URL + "/api/v1/employees");
+        return axios.get("/api/v1/employees");
     }
 
     createEmployee(employee){
@@ -28,19 +28,19 @@ class EmployeeService {
 
     getEmployeeById(employeeId){
         console.log("===execute getEmployeeById Service===")
-        return axios.get(process.env.REACT_APP_API_URL + "/api/v1/employees" + '/' + employeeId);
+        return axios.get("/api/v1/employees" + '/' + employeeId);
     }
 
     updateEmployee(employee, employeeId){
         console.log("===execute updateEmployee Service===")
         console.log('employee => ' + JSON.stringify(employee));
-        return axios.post(process.env.REACT_APP_API_URL + "/api/v1/employees" + '/' + employeeId, employee);
+        return axios.post("/api/v1/employees" + '/' + employeeId, employee);
     }
 
     deleteEmployee(employeeId){
         console.log("===execute deleteEmployee Service===")
         //return axios.delete(process.env.REACT_APP_API_URL + "/api/v1/employees" +  '/' + employeeId);
-        return axios.post(process.env.REACT_APP_API_URL + "/api/v1/employee" +  '/' + employeeId);
+        return axios.post("/api/v1/employee" +  '/' + employeeId);
     }
 }
 
