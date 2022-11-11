@@ -23,7 +23,7 @@ class EmployeeService {
 
     createEmployee(employee){
         console.log("===execute createEmployee Service===")
-        return axios.post(process.env.REACT_APP_API_URL + "/api/v1/employees",employee);
+        return axios.post("/api/v1/employees",employee);
     }
 
     getEmployeeById(employeeId){
@@ -39,7 +39,6 @@ class EmployeeService {
 
     deleteEmployee(employeeId){
         console.log("===execute deleteEmployee Service===")
-        //return axios.delete(process.env.REACT_APP_API_URL + "/api/v1/employees" +  '/' + employeeId);
         return axios.post("/api/v1/employee" +  '/' + employeeId);
     }
 }
