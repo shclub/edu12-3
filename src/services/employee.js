@@ -23,7 +23,7 @@ class EmployeeService {
 
     createEmployee(employee){
         console.log("===execute createEmployee Service===")
-        return axios.post("/api/v1/employee",employee);
+        return axios.post("/api/v1/employees",employee);
     }
 
     getEmployeeById(employeeId){
