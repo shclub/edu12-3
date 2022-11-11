@@ -9,7 +9,7 @@ class CreateEmployeeComponent extends Component {
             // step 2
             id: this.props.match.params.id,
             empName: '',
-            emDeptName: '',
+            empDeptName: '',
             empTelNo: '',
             empMail: ''
         }
