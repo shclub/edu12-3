@@ -3,8 +3,8 @@ import AuthenticationService from './AuthenticationService.js'
 
 class EmployeeService {
     constructor(props) {
-        //super(props)
-
+        super(props)
+        
         AuthenticationService.setupAxiosInterceptors();
         
     }
