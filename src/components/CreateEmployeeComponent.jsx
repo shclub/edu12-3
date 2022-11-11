@@ -24,9 +24,9 @@ class CreateEmployeeComponent extends Component {
     componentDidMount(){
 
         // step 4
-        if(this.state.id === '_add'){
-            return
-        }else{
+        //if(this.state.id === '_add'){
+        //    return
+        //}else{
             EmployeeService.getEmployeeById(this.state.id).then( (res) =>{
                 let employee = res.data;
                 this.setState({empName: employee.empName,
@@ -35,7 +35,7 @@ class CreateEmployeeComponent extends Component {
                     empMail : employee.empMail
                 });
             });
-        }        
+        //}        
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
