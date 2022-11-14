@@ -35,8 +35,9 @@ class CreateEmployeeComponent extends Component {
                     empMail : employee.empMail
                 });
             });
-        }         
+        }        
     }
+    
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
         let employee = {empName: this.state.empName, empDeptName: this.state.empDeptName, empTelNo: this.state.empTelNo,empMail: this.state.empMail};
