@@ -25,10 +25,12 @@ class CreateEmployeeComponent extends Component {
 
         // step 4
         if(this.state.id === '_add'){
+            console.log('employee this.state.id steop 4 => ' + this.state.id);
             return
         }else{
             EmployeeService.getEmployeeById(this.state.id).then( (res) =>{
                 let employee = res.data;
+                console.log('employee this.state.id steop 4 employee_id => ' + this.state.id);
                 this.setState({empName: employee.empName,
                     empDeptName: employee.empDeptName,
                     empTelNo: employee.empTelNo,
