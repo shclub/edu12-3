@@ -24,7 +24,7 @@ class CreateEmployeeComponent extends Component {
     componentDidMount(){
 
         // step 4
-        if(this.state.id === '_add'){
+        if(this.state.id === 'add'){
             return
         }else{
             EmployeeService.getEmployeeById(this.state.id).then( (res) =>{
@@ -43,7 +43,7 @@ class CreateEmployeeComponent extends Component {
         console.log('employee => ' + JSON.stringify(employee));
 
         // step 5
-        if(this.state.id === '_add'){
+        if(this.state.id === 'add'){
             EmployeeService.createEmployee(employee).then(res =>{
                 this.props.history.push('/employees');
             });
@@ -75,7 +75,7 @@ class CreateEmployeeComponent extends Component {
     }
 
     getTitle(){
-        if(this.state.id === '_add'){
+        if(this.state.id === 'add'){
             return <h3 className="text-center">Add Employee</h3>
         }else{
             return <h3 className="text-center">Update Employee</h3>
