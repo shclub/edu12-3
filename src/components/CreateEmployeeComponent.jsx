@@ -35,7 +35,7 @@ class CreateEmployeeComponent extends Component {
                     empMail : employee.empMail
                 });
             });
-        //}        
+        }        
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
