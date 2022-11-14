@@ -3,7 +3,7 @@ import EmployeeService from '../services/employee.js';
 
 class CreateEmployeeComponent extends Component {
     constructor(props) {
-        //super(props)
+        super(props)
 
         this.state = {
             // step 2
