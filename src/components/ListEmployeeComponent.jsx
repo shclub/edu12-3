@@ -32,7 +32,6 @@ class ListEmployeeComponent extends Component {
     }
 
     addEmployee(){
-        console.log('employee Addeempkyee => ');
         this.props.history.push('/add-employee/_add');
     }
 
