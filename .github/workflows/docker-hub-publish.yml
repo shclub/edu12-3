@@ -37,6 +37,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: shclub/edu12-3:v10
+          tags: shclub/edu12-3:v11
           #tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
