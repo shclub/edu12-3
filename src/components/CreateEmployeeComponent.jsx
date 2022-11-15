@@ -31,7 +31,6 @@ class CreateEmployeeComponent extends Component {
             EmployeeService.getEmployeeById(this.state.id).then( (res) =>{
                 let employee = res.data;
                 console.log('test');
-                console.log('employee this.state.id steop 4 employee_id => ' + this.state.id);
                 this.setState({empName: employee.empName,
                     empDeptName: employee.empDeptName,
                     empTelNo: employee.empTelNo,
