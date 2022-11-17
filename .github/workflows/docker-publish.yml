@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: "TAG"
+        description: "Docker TAG"
         required: true
         default: "master"
 #  schedule:
@@ -84,5 +84,5 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ github.event.inputs.name }}
           labels: ${{ steps.meta.outputs.labels }}
