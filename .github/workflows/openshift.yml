@@ -33,7 +33,7 @@ on:
       name:
         description: "Route Name"
         required: true
-        default: edu
+        default: edu12-3
 
 jobs:
 
