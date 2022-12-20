@@ -121,7 +121,7 @@ jobs:
         image: ${{ steps.push-image.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
-        build_env: BACKEND_API_URL=http://backend
+        env: BACKEND_API_URL=http://backend
 
     - name: Print application URL
       env:
