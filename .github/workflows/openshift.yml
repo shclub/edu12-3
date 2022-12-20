@@ -143,3 +143,5 @@ jobs:
        kubectl get po 
        echo "kubectl get svc"
        kubectl get svc 
+       echo "kubectl get deploy frontend -o yaml"
+       kubectl get deploy frontend -o yaml
