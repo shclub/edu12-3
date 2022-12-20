@@ -31,10 +31,10 @@ env:
 on:      
   workflow_dispatch:
     inputs:
-      name:
+      tags:
         description: "Service Name"
-#        required: true
-#        default: frontend
+        required: true
+        default: frontend
 
 jobs:
 
