@@ -118,10 +118,10 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ github.event.inputs.tags }} # ${{ env.APP_NAME }}
-        image: ${{ steps.push-image.outputs.registry-path }}
+        image: "ghcr.io/shclub/edu12-3:v10" #${{ steps.push-image.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
-        build_env: BACKEND_API_URL=http://backend
+        #build_env: BACKEND_API_URL=http://backend
 
     - name: Print application URL
       env:
