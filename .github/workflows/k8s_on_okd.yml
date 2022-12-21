@@ -120,21 +120,7 @@ jobs:
       run: |
        echo "kubectl delete all --selector=app=frontend"
        kubectl apply -f ./manifest.yaml
-                 
-        
-    - name: Print application URL
-      env:
-        ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-        SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
-      run: |
-        [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
-        echo
-        echo "======================== Your application is available at: ========================"
-        echo ${{ env.ROUTE }}
-        echo "==================================================================================="
-        echo
-        echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
-        
+                       
     - name: kubectl Query After Deploy 
       run: |
        sleep 5s
