@@ -38,7 +38,6 @@ spec:
       port: 80
       targetPort: 80
   type: ClusterIP   
-
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
