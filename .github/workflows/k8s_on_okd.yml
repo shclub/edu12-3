@@ -33,7 +33,7 @@ on:
       tags:
         description: "Service Name"
         required: true
-        default: backend
+        default: frontend
 
 jobs:
 
