@@ -1,0 +1,50 @@
+def label = "agent-${UUID.randomUUID().toString()}"
+def gitBranch = 'master'
+def docker_registry = "https://211.252.85.148:40002"  
+def imageName = "211.252.85.148:40002/edu/edu12-3"
+
+def TAG = getTag(gitBranch)
+
+podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: 'edu30',
+    containers: [
+        containerTemplate(name: 'podman', image: 'mattermost/podman:1.8.0', ttyEnabled: true, command: 'cat', privileged: true, alwaysPullImage: true)
+        ,containerTemplate(name: 'jnlp', image: 'jenkins/jnlp-slave:latest-jdk11', args: '${computer.jnlpmac} ${computer.name}')
+    ],
+    volumes: [
+        hostPathVolume(hostPath: '/etc/containers', mountPath: '/var/lib/containers'),
+        persistentVolumeClaim(mountPath: '/var/jenkins_home', claimName: 'jenkins-edu-slave-pvc',readOnly: false)
+        ]){    
+    //node("podman-agent") {
+    
+    node(label) {
+       stage('Clone Git Project') {
+            sh "pwd"
+            echo 'Clone'
+            git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/shclub/edu12-3.git'
+            sh "ls"
+        }
+         
+        stage('Build with Podman') {
+                container('podman') {
+                  withCredentials([usernamePassword(credentialsId: 'harbor_ci',usernameVariable: 'USERNAME',passwordVariable: 'PASSWORD')]) {
+                     sh  """
+                     podman login -u ${USERNAME} -p ${PASSWORD} ${docker_registry} --tls-verify=false
+                     podman build -t ${imageName} --cgroup-manager=cgroupfs --tls-verify=false .
+                     podman push ${imageName} --tls-verify=false
+                     echo 'TAG ==========> ' ${imageName}
+                     """
+
+                  }
+              }
+        }
+
+    }
+
+}
+
+def getTag(branchName){     
+    def TAG
+    def DATETIME_TAG = new Date().format('yyyyMMddHHmmss')
+    TAG = "${DATETIME_TAG}"
+    return TAG
+}  
