@@ -3,11 +3,11 @@ def gitBranch = 'master'
 def docker_registry = "docker.io"  
 def imageName = "shclub/edu12-frontend"
 def git_ops_name = "edu12-frontend-gitops"
-def p_namespace = "edu30"
+def P_NAMESPACE = "edu30"
 
 def TAG = getTag(gitBranch)
 
-podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: ${p_namespace},
+podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: P_NAMESPACE,
     containers: [
         containerTemplate(name: 'podman', image: 'mattermost/podman:1.8.0', ttyEnabled: true, command: 'cat', privileged: true, alwaysPullImage: true)
         ,containerTemplate(name: 'jnlp', image: 'jenkins/jnlp-slave:latest-jdk11', args: '${computer.jnlpmac} ${computer.name}')
