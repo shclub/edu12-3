@@ -33,7 +33,7 @@ podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: P_NAMESPAC
                      sh  """
                      podman login -u ${USERNAME} -p ${PASSWORD} ${docker_registry} --tls-verify=false
                      podman build -t ${imageName} --cgroup-manager=cgroupfs --tls-verify=false .
-                     podman push ${imageName}/${TAG} --tls-verify=false
+                     podman push ${imageName}:${TAG} --tls-verify=false
                      echo 'TAG ==========> ' ${TAG}
                      """
 
