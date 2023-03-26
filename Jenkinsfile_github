@@ -32,7 +32,7 @@ podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: P_NAMESPAC
                   withCredentials([usernamePassword(credentialsId: 'github_ci',usernameVariable: 'USERNAME',passwordVariable: 'PASSWORD')]) {
                      sh  """
                      podman login -u ${USERNAME} -p ${PASSWORD} ${docker_registry} --tls-verify=false
-                     podman build -t ${imageName} --cgroup-manager=cgroupfs --tls-verify=false .
+                     podman build -t ${imageName}:${TAG} --cgroup-manager=cgroupfs --tls-verify=false .
                      podman push ${imageName}:${TAG} --tls-verify=false
                      echo 'TAG ==========> ' ${TAG}
                      """
