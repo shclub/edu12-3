@@ -21,16 +21,18 @@ podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: P_NAMESPAC
     
     node(label) {
         
+      stage('Clone Git Project') {
+          script{
+             checkout scm
+          }
+       } 
+                
       //stage('Clone Git Project') {
-      //     checkout scm
-      // } 
-      
-       stage('Clone Git Project') {
-            sh "pwd"
-            echo 'Clone'
-            git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/shclub/edu12-3.git'
-            sh "ls"
-        }
+      //      sh "pwd"
+      //      echo 'Clone'
+      //      git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/shclub/edu12-3.git'
+      //      sh "ls"
+      //  }
                      
       stage('Podman Build & Image Push ') {
               container('podman') {
